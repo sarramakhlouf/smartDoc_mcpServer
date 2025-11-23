@@ -11,12 +11,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class PdfToolMcp {
-	@McpTool(name="extractPdfText")
+    @McpTool(name="extractPdfText")
     public String extractPdfText(@McpArg(description="PDF File") MultipartFile file) throws Exception {
         try (InputStream is = file.getInputStream(); PDDocument doc = PDDocument.load(is)) {
             PDFTextStripper stripper = new PDFTextStripper();
             return stripper.getText(doc);
         }
     }
-
 }

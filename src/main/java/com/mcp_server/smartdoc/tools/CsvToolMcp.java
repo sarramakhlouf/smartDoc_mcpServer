@@ -14,16 +14,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class CsvToolMcp {
-	@McpTool(name="readCsv")
+    @McpTool(name="readCsv")
     public List<Map<String,String>> readCsv(@McpArg(description="CSV File") MultipartFile file) throws Exception {
         try (Reader reader = new java.io.InputStreamReader(file.getInputStream())) {
             Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader);
             List<Map<String,String>> rows = new ArrayList<>();
-            for (CSVRecord r : records) {
-                rows.add(r.toMap());
-            }
+            for (CSVRecord r : records) rows.add(r.toMap());
             return rows;
         }
     }
-
 }
