@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-// ---------------- Controller pour exposer les outils MCP ----------------
+
 @RestController
 @RequestMapping("/tools")
 public class StatsController {
@@ -15,13 +15,11 @@ public class StatsController {
     @Autowired
     private StatsToolMcp statsToolMcp;
 
-    // ---------------- Endpoint pour calculer les statistiques ----------------
     @PostMapping("/calculateStats")
     public Map<String, Double> calculateStats(@RequestBody List<Double> numbers) {
         return statsToolMcp.calculateStats(numbers);
     }
 
-    // ---------------- Endpoint pour prédiction par régression linéaire ----------------
     @PostMapping("/linearRegressionPredict")
     public double linearRegressionPredict(
             @RequestBody LinearRegressionRequest request) {
@@ -32,7 +30,6 @@ public class StatsController {
         );
     }
 
-    // ---------------- Classe interne pour la requête de régression ----------------
     public static class LinearRegressionRequest {
         private List<Double> xValues;
         private List<Double> yValues;

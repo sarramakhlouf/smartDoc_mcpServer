@@ -33,7 +33,6 @@ public class StatsToolMcp {
         return result;
     }
 
-    // ------------------- Bonus ML : prédiction linéaire simple -------------------
     @McpTool(name = "linearRegressionPredict", description = "Prédiction simple avec régression linéaire")
     public double linearRegressionPredict(
             @McpArg(description = "Valeurs X") List<Double> xValues,
@@ -44,7 +43,6 @@ public class StatsToolMcp {
             throw new IllegalArgumentException("Les listes X et Y doivent être de même taille et non vides.");
         }
 
-        // Calcul coefficients régression linéaire
         double sumX = xValues.stream().mapToDouble(Double::doubleValue).sum();
         double sumY = yValues.stream().mapToDouble(Double::doubleValue).sum();
         double sumXY = 0;
